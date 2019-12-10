@@ -1,5 +1,7 @@
 {
   "name": "SharepointFormApp01",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
