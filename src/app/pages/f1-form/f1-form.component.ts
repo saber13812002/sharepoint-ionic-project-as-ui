@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RestServiceService } from '../../../services/rest/rest-service.service';
+import { RestService } from '../../services/rest/rest.service';
 
 @Component({
   selector: 'app-f1-form',
@@ -13,7 +13,7 @@ export class F1FormComponent implements OnInit {
 
 
   constructor(
-    public rest: RestServiceService,
+    public rest: RestService,
     private route: ActivatedRoute,
     private router: Router) { }
 
