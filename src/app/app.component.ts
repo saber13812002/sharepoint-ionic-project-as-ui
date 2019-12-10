@@ -17,6 +17,11 @@ export class AppComponent {
       icon: 'home'
     },
     {
+      title: 'فرآیند بررسی عملکرد مشاور استانی',
+      url: '/f1-form',
+      icon: 'form'
+    },
+    {
       title: 'List',
       url: '/list',
       icon: 'list'
@@ -29,6 +34,7 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
+    
   }
 
   initializeApp() {
