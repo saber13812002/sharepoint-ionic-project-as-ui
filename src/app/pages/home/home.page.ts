@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RestService } from '../../services/rest/rest.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(
+    public rest: RestService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
+
+  add() {
+    this.router.navigate(['/ostan-add']);
+  }
 }

@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'f1-form',
     loadChildren: () => import('./pages/f1-form/f1-form.module').then( m => m.F1FormPageModule)
+  },
+  {
+    path: 'ostan-add',
+    loadChildren: () => import('./ostan-add/ostan-add.module').then( m => m.OstanAddPageModule)
   }
 ];
 
