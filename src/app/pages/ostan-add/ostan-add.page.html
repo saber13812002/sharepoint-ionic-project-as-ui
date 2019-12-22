@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ostan-add</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  عنوان
+  <ion-input type="text" [(ngModel)]="data.title" name=title>
+
+  </ion-input>
+  دوره گزارش
+
+  <ion-item>
+    <ion-label>From</ion-label>
+    <ion-datetime (ngModelChange)="change(datePicker)" displayFormat="YYYY/MM/DD" [(ngModel)]="data.fromDate"
+      name=date1>
+    </ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>To</ion-label>
+    <ion-datetime #datePicker displayFormat="YYYY/MM/DD" [(ngModel)]="data.toDate" name=date2>
+    </ion-datetime>
+  </ion-item>
+  تطابق ثبت نام پرونده و تشکیل پرونده
+
+  <ion-input type="number" [(ngModel)]="data.Tedad_kol_Parvandeh" name=Tedad_kol_Parvandeh>
+
+  </ion-input>
+  <ion-input type="number" [(ngModel)]="data.Baresi_Parvandeh" name=Baresi_Parvandeh>
+
+  </ion-input>
+
+  تطابق فرآیند مطالعه و طراحی
+
+  <ion-input type="number" [(ngModel)]="data.Tedad_Motale_Tarahi" name=Tedad_Motale_Tarahi>
+
+  </ion-input>
+  <ion-input type="number" [(ngModel)]="data.Baresi_motale_Tarihi" name=Baresi_motale_Tarihi>
+
+  </ion-input>
+
+  تطابق فرآیند ارجاع و اجرای قرارداد
+
+  <ion-input type="number" [(ngModel)]="data.Tedad_Erjae_Kar" name=Tedad_Erjae_Kar>
+
+  </ion-input>
+  <ion-input type="number" [(ngModel)]="data.Baresi_ejrae_kar" name=Baresi_ejrae_kar>
+
+  </ion-input>
+
+  تطابق فرآیند تامین لوازم و تجهیزات
+
+  <ion-input type="number" [(ngModel)]="data.Tedad_Tamin_Tajhizat" name=Tedad_Tamin_Tajhizat>
+
+  </ion-input>
+  <ion-input type="number" [(ngModel)]="data.Baresi_Tamin_Tajhizat" name=Baresi_Tamin_Tajhizat>
+
+  </ion-input>
+
+  تطابق فرآیند اجرای
+
+  <ion-input type="number" [(ngModel)]="data.Tedad_ejra" name=Tedad_ejra>
+
+  </ion-input>
+  <ion-input type="number" [(ngModel)]="data.Baresi_Ejra" name=Baresi_Ejra>
+
+  </ion-input>
+
+  تطابق فرآیند تحویل
+
+  <ion-input type="number" [(ngModel)]="data.Tedad_Tahvil" name=Tedad_Tahvil>
+
+  </ion-input>
+  <ion-input type="number" [(ngModel)]="data.Baresi_Tahvil" name=Baresi_Tahvil>
+
+  </ion-input>
+
+  تطابق فرآیند بهره برداری
+
+  <ion-input type="number" [(ngModel)]="data.Tedad_Bahrebardari" name=Tedad_Bahrebardari>
+
+  </ion-input>
+  <ion-input type="number" [(ngModel)]="data.Baresi_Bahrebardari" name=Baresi_Bahrebardari>
+
+  </ion-input>
+
+  مطابق فرآیند مستندسازی
+
+  <ion-input type="number" [(ngModel)]="data.Tedad_Mostanadsazi" name=Tedad_Mostanadsazi>
+
+  </ion-input>
+  <ion-input type="number" [(ngModel)]="data.Baresi_Mostanadsazi" name=Baresi_Mostanadsazi>
+
+  </ion-input>
+
+  میانگین درصد تحقق
+
+  <ion-input type="text" [(ngModel)]="spt9">
+  </ion-input>
+  فایل ضمیمه
+
+  <ion-input type="text" [(ngModel)]="spt10">
+  </ion-input>
+  توضیحات
+
+  <ion-input type="text" [(ngModel)]="spt11">
+  </ion-input>
+
+  <ion-button (click)="save()">save</ion-button>
+</ion-content>

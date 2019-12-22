@@ -24,3 +24,12 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.my-custom-class{
+    --background: #FFDB22;
+    --color:#FF3F22;
+    --border-style:solid;
+    --border-width :5px;
+    --border-color:#FF3F22;
+}

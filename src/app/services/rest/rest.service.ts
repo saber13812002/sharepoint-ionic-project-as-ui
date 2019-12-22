@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { ToastController } from '@ionic/angular';
+import { EnvVars } from '../EnvVars';
+import { Form11Model } from 'src/app/models/form11Model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
 
-  endpoint = "/Moshaver_rahbordi/_api/Lists(guid'4C2EF067-7372-4483-8B2F-8046217B1F94')/Items";
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -16,9 +19,12 @@ export class RestService {
   };
 
   httpPostOptions;
+  toast
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    public toastController: ToastController,
+    public url: EnvVars
   ) {
 
 
@@ -30,23 +36,47 @@ export class RestService {
   }
 
   public getProducts(): Observable<any> {
-    return this.http.get(this.endpoint).pipe(
+    return this.http.get(this.url.abs('ostan')).pipe(
       map(this.extractData));
   }
 
-  addProduct(productname): Observable<any> {
+  addItem(listName: string, _data: Form11Model): Observable<any> {
 
     this.setHttpOptions();
 
+    let spDataListItem = "SP.Data." + listName + "ListItem";
+
     var data = {
-        __metadata: {
-            type: "SP.Data.Ostan_x005f_ListListItem"
-        },
-        Title: productname
+      __metadata: {
+        type: spDataListItem
+      },
+      Title: _data.title,
+      Date1: _data.fromDate,
+      Date2: _data.toDate,
+
+      Tedad_kol_Parvandeh: _data.Tedad_kol_Parvandeh,
+      Tedad_Motale_Tarahi: _data.Tedad_Motale_Tarahi,
+      Tedad_Erjae_Kar: _data.Tedad_Erjae_Kar,
+      Tedad_Tamin_Tajhizat: _data.Tedad_Tamin_Tajhizat,
+      Tedad_ejra: _data.Tedad_ejra,
+      Tedad_Tahvil: _data.Tedad_Tahvil,
+      Tedad_Bahrebardari: _data.Tedad_Bahrebardari,
+      Tedad_Mostanadsazi: _data.Tedad_Mostanadsazi,
+
+      Baresi_Parvandeh: _data.Baresi_Parvandeh,
+      Baresi_motale_Tarihi: _data.Baresi_motale_Tarihi,
+      Baresi_ejrae_kar: _data.Baresi_ejrae_kar,
+      Baresi_Tamin_Tajhizat: _data.Baresi_Tamin_Tajhizat,
+      Baresi_Ejra: _data.Baresi_Ejra,
+      Baresi_Tahvil: _data.Baresi_Tahvil,
+      Baresi_Bahrebardari: _data.Baresi_Bahrebardari,
+      Baresi_Mostanadsazi: _data.Baresi_Mostanadsazi,
+
+
     };
 
     console.log(data);
-    return this.http.post<any>(this.endpoint, JSON.stringify(data), this.httpPostOptions).pipe(
+    return this.http.post<any>(this.url.abs('form'), JSON.stringify(data), this.httpPostOptions).pipe(
       tap((product) => console.log(`added product w/ id=${product}`)),
       catchError(this.handleError<any>('addProduct'))
     );
@@ -70,7 +100,7 @@ export class RestService {
 
     this.setHttpOptions();
 
-    return this.http.put(this.endpoint + 'products/' + id, JSON.stringify(product), this.httpPostOptions).pipe(
+    return this.http.put(this.url.abs('form1'), JSON.stringify(product), this.httpPostOptions).pipe(
       tap(_ => console.log(`updated product id=${id}`)),
       catchError(this.handleError<any>('updateProduct'))
     );
@@ -81,7 +111,7 @@ export class RestService {
 
     this.setHttpOptions();
 
-    return this.http.delete<any>(this.endpoint + 'products/' + id, this.httpPostOptions).pipe(
+    return this.http.delete<any>(this.url.abs('form1'), this.httpPostOptions).pipe(
       tap(_ => console.log(`deleted product id=${id}`)),
       catchError(this.handleError<any>('deleteProduct'))
     );
@@ -91,8 +121,11 @@ export class RestService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      //console.error(error); // log to console instead
 
+      if (error.status == 403) {
+        this.showToast("please go to first page and login again");
+      }
       // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
 
@@ -101,4 +134,33 @@ export class RestService {
     };
   }
 
+  showToast(msg) {
+    this.toast = this.toastController.create({
+      message: msg,
+      duration: 2000
+    }).then((toastData) => {
+      console.log(toastData);
+      toastData.present();
+    });
+    this.showToast2(msg)
+  }
+
+  showToast2(msg) {
+    this.toast = this.toastController.create({
+      message: msg,
+      showCloseButton: true,
+      position: 'middle',
+      closeButtonText: 'OK',
+      animated: true,
+      cssClass: "my-custom-class"
+    }).then((toastData) => {
+      console.log(toastData);
+      toastData.present();
+    });
+
+  }
+
+  async HideToast() {
+    this.toast = this.toastController.dismiss();
+  }
 }

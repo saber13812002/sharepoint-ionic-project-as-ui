@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'ostan-add',
-    loadChildren: () => import('./ostan-add/ostan-add.module').then( m => m.OstanAddPageModule)
+    loadChildren: () => import('./pages/ostan-add/ostan-add.module').then( m => m.OstanAddPageModule)
   }
 ];
 

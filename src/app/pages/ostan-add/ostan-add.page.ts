@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService } from '../services/rest/rest.service';
+import { RestService } from '../../services/rest/rest.service';
 import { Router } from '@angular/router';
+import { Form11Model } from '../../models/form11Model';
 
 @Component({
   selector: 'app-ostan-add',
@@ -11,17 +12,22 @@ export class OstanAddPage implements OnInit {
 
 
   name
+  data: Form11Model = new Form11Model();
 
   constructor(
     private rest: RestService,
-  private router:Router
+    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
+  change(datePicker) {
+    datePicker.open();
+  }
+
   save() {
-    this.rest.addProduct(this.name).subscribe((data: {}) => {
+    this.rest.addItem('Form1', this.data).subscribe((data: {}) => {
       console.log(data);
       let d = <any>data;
       if (d) {
