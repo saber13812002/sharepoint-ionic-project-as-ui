@@ -22,7 +22,7 @@ export class AppComponent {
       icon: 'form'
     },
     {
-      title: 'راهنما',
+      title: 'دوره ها',
       url: '/list',
       icon: 'list'
     }

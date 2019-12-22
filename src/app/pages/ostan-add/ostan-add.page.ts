@@ -11,6 +11,9 @@ import { Form11Model } from '../../models/form11Model';
 export class OstanAddPage implements OnInit {
 
 
+  ostans: any = [];
+  dores: any = [];
+
   name
   data: Form11Model = new Form11Model();
 
@@ -20,6 +23,33 @@ export class OstanAddPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getOstans();
+    this.getDore();
+  }
+
+  getDore(){
+    
+    this.dores = [];
+    this.rest.getItems('dore').subscribe((data: {}) => {
+      console.log(data);
+      let d = <any>data;
+      if (d)
+        this.dores = d.value;
+    });
+
+  }
+
+  getOstans() {
+
+    this.ostans = [];
+
+    this.rest.getItems('ostan').subscribe((data: {}) => {
+      console.log(data);
+      let d = <any>data;
+      if (d)
+        this.ostans = d.value;
+    });
+
   }
 
   change(datePicker) {

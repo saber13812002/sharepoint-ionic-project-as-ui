@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../../services/rest/rest.service';
 
 @Component({
   selector: 'app-list',
@@ -19,15 +20,19 @@ export class ListPage implements OnInit {
     'bluetooth',
     'build'
   ];
+
+  dores: any = [];
+
   public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+
+  constructor(public rest:RestService) {
+    // for (let i = 1; i < 11; i++) {
+    //   this.items.push({
+    //     title: 'Item ' + i,
+    //     note: 'This is item #' + i,
+    //     icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+    //   });
+    // }
   }
 
   ngOnInit() {
@@ -36,4 +41,20 @@ export class ListPage implements OnInit {
   // navigate(item) {
   //   this.router.navigate(['/list', JSON.stringify(item)]);
   // }
+  
+  ionViewDidEnter() {
+    this.getDore();
+  }
+
+  getDore(){
+    
+    this.dores = [];
+    this.rest.getItems('dore').subscribe((data: {}) => {
+      console.log(data);
+      let d = <any>data;
+      if (d)
+        this.dores = d.value;
+    });
+
+  }
 }

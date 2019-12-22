@@ -35,8 +35,8 @@ export class RestService {
     return body || {};
   }
 
-  public getProducts(): Observable<any> {
-    return this.http.get(this.url.abs('ostan')).pipe(
+  public getItems(itemType): Observable<any> {
+    return this.http.get(this.url.abs(itemType)).pipe(
       map(this.extractData));
   }
 
@@ -66,7 +66,7 @@ export class RestService {
       Baresi_Parvandeh: _data.Baresi_Parvandeh,
       Baresi_motale_Tarihi: _data.Baresi_motale_Tarihi,
       Baresi_ejrae_kar: _data.Baresi_ejrae_kar,
-      Baresi_Tamin_Tajhizat: _data.Baresi_Tamin_Tajhizat,
+      // Baresi_Tamin_Tajhizat: _data.Baresi_Tamin_Tajhizat,
       Baresi_Ejra: _data.Baresi_Ejra,
       Baresi_Tahvil: _data.Baresi_Tahvil,
       Baresi_Bahrebardari: _data.Baresi_Bahrebardari,

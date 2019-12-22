@@ -10,7 +10,8 @@ import { RestService } from '../../services/rest/rest.service';
 })
 export class F1FormPage implements OnInit {
 
-  products: any = [];
+  ostans: any = [];
+  forms: any = [];
 
 
   constructor(
@@ -19,18 +20,35 @@ export class F1FormPage implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.getProducts();
+    this.getOstans();
+    this.getForms();
   }
 
 
-  getProducts() {
-    this.products = [];
-    this.rest.getProducts().subscribe((data: {}) => {
+  getOstans() {
+
+    this.ostans = [];
+
+    this.rest.getItems('ostan').subscribe((data: {}) => {
       console.log(data);
       let d = <any>data;
       if (d)
-        this.products = d.value;
+        this.ostans = d.value;
     });
+
+  }
+
+  getForms() {
+
+    this.forms = [];
+
+    this.rest.getItems('form').subscribe((data: {}) => {
+      console.log(data);
+      let d = <any>data;
+      if (d)
+        this.forms = d.value;
+    });
+
   }
 
 
@@ -41,7 +59,7 @@ export class F1FormPage implements OnInit {
   delete(id) {
     this.rest.deleteProduct(id)
       .subscribe(res => {
-        this.getProducts();
+        this.getOstans();
       }, (err) => {
         console.log(err);
       }

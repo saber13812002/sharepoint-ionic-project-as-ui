@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ostan-add</ion-title>
+    <ion-title>فرم جدید</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,22 @@
   </ion-input>
   دوره گزارش
 
+
   <ion-item>
+    <ion-label>استان</ion-label>
+    <ion-select placeholder="انتخاب یک گزینه">
+      <ion-select-option *ngFor="let item of ostans" value="{{item.Title}}">{{item.Title}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>دوره</ion-label>
+    <ion-select placeholder="انتخاب یک گزینه">
+      <ion-select-option *ngFor="let item of dores" value="{{item.Title}}">{{item.Title}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- <ion-item>
     <ion-label>From</ion-label>
     <ion-datetime (ngModelChange)="change(datePicker)" displayFormat="YYYY/MM/DD" [(ngModel)]="data.fromDate"
       name=date1>
@@ -22,78 +37,218 @@
     <ion-label>To</ion-label>
     <ion-datetime #datePicker displayFormat="YYYY/MM/DD" [(ngModel)]="data.toDate" name=date2>
     </ion-datetime>
-  </ion-item>
-  تطابق ثبت نام پرونده و تشکیل پرونده
+  </ion-item> -->
+  <ion-row>
+    <ion-col col-3>
 
-  <ion-input type="number" [(ngModel)]="data.Tedad_kol_Parvandeh" name=Tedad_kol_Parvandeh>
+      تطابق ثبت نام پرونده و تشکیل پرونده
 
-  </ion-input>
-  <ion-input type="number" [(ngModel)]="data.Baresi_Parvandeh" name=Baresi_Parvandeh>
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Tedad_kol_Parvandeh" name=Tedad_kol_Parvandeh>
 
-  </ion-input>
+      </ion-input>
 
-  تطابق فرآیند مطالعه و طراحی
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Baresi_Parvandeh" name=Baresi_Parvandeh>
 
-  <ion-input type="number" [(ngModel)]="data.Tedad_Motale_Tarahi" name=Tedad_Motale_Tarahi>
+      </ion-input>
 
-  </ion-input>
-  <ion-input type="number" [(ngModel)]="data.Baresi_motale_Tarihi" name=Baresi_motale_Tarihi>
+    </ion-col>
+    <ion-col col-3>
 
-  </ion-input>
+      <ion-input type="number" value="{{(data.Tedad_kol_Parvandeh/data.Baresi_Parvandeh*100)}}" name=Baresi_parrvandee>
 
-  تطابق فرآیند ارجاع و اجرای قرارداد
+      </ion-input>
+    </ion-col>
+  </ion-row>
 
-  <ion-input type="number" [(ngModel)]="data.Tedad_Erjae_Kar" name=Tedad_Erjae_Kar>
+  <ion-row>
+    <ion-col col-3>
 
-  </ion-input>
-  <ion-input type="number" [(ngModel)]="data.Baresi_ejrae_kar" name=Baresi_ejrae_kar>
+      تطابق فرآیند مطالعه و طراحی
 
-  </ion-input>
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Tedad_Motale_Tarahi" name=Tedad_Motale_Tarahi>
 
-  تطابق فرآیند تامین لوازم و تجهیزات
+      </ion-input>
 
-  <ion-input type="number" [(ngModel)]="data.Tedad_Tamin_Tajhizat" name=Tedad_Tamin_Tajhizat>
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Baresi_motale_Tarihi" name=Baresi_motale_Tarihi>
 
-  </ion-input>
-  <ion-input type="number" [(ngModel)]="data.Baresi_Tamin_Tajhizat" name=Baresi_Tamin_Tajhizat>
+      </ion-input>
 
-  </ion-input>
+    </ion-col>
+    <ion-col col-3>
 
-  تطابق فرآیند اجرای
+      <ion-input type="number" value="{{(data.Tedad_Motale_Tarahi/data.Baresi_motale_Tarihi*100)}}" name=Baresi_tarahi>
 
-  <ion-input type="number" [(ngModel)]="data.Tedad_ejra" name=Tedad_ejra>
+      </ion-input>
+    </ion-col>
+  </ion-row>
 
-  </ion-input>
-  <ion-input type="number" [(ngModel)]="data.Baresi_Ejra" name=Baresi_Ejra>
 
-  </ion-input>
+  <ion-row>
+    <ion-col col-3>
+      تطابق فرآیند ارجاع و اجرای قرارداد
 
-  تطابق فرآیند تحویل
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Tedad_Erjae_Kar" name=Tedad_Erjae_Kar>
 
-  <ion-input type="number" [(ngModel)]="data.Tedad_Tahvil" name=Tedad_Tahvil>
+      </ion-input>
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Baresi_ejrae_kar" name=Baresi_ejrae_kar>
 
-  </ion-input>
-  <ion-input type="number" [(ngModel)]="data.Baresi_Tahvil" name=Baresi_Tahvil>
+      </ion-input>
 
-  </ion-input>
+    </ion-col>
+    <ion-col col-3>
 
-  تطابق فرآیند بهره برداری
+      <ion-input type="number" value="{{(data.Tedad_Erjae_Kar/data.Baresi_ejrae_kar*100)}}" name=BaresiEjraakar>
 
-  <ion-input type="number" [(ngModel)]="data.Tedad_Bahrebardari" name=Tedad_Bahrebardari>
+      </ion-input>
+    </ion-col>
+  </ion-row>
 
-  </ion-input>
-  <ion-input type="number" [(ngModel)]="data.Baresi_Bahrebardari" name=Baresi_Bahrebardari>
 
-  </ion-input>
+  <ion-row>
+    <ion-col col-3>
+      تطابق فرآیند تامین لوازم و تجهیزات
 
-  مطابق فرآیند مستندسازی
+    </ion-col>
+    <ion-col col-3>
 
-  <ion-input type="number" [(ngModel)]="data.Tedad_Mostanadsazi" name=Tedad_Mostanadsazi>
+      <ion-input type="number" [(ngModel)]="data.Tedad_Tamin_Tajhizat" name=Tedad_Tamin_Tajhizat>
 
-  </ion-input>
-  <ion-input type="number" [(ngModel)]="data.Baresi_Mostanadsazi" name=Baresi_Mostanadsazi>
+      </ion-input>
+    </ion-col>
+    <ion-col col-3>
 
-  </ion-input>
+      <ion-input type="number" [(ngModel)]="data.Baresi_Tamin_Tajhizat" name=Baresi_Tamin_Tajhizat>
+
+      </ion-input>
+
+    </ion-col>
+    <ion-col col-3>
+
+      <ion-input type="number" value="{{(data.Tedad_Tamin_Tajhizat/data.Baresi_Tamin_Tajhizat*100)}}"
+        name=Baresi_Tamin_Tajhizatm>
+
+      </ion-input>
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row>
+    <ion-col col-3>
+      تطابق فرآیند اجرای
+
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Tedad_ejra" name=Tedad_ejra>
+
+      </ion-input>
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Baresi_Ejra" name=Baresi_Ejra>
+
+      </ion-input>
+
+    </ion-col>
+    <ion-col col-3>
+
+      <ion-input type="number" value="{{(data.Tedad_ejra/data.Baresi_Ejra*100)}}" name=Baresi_Ejram>
+
+      </ion-input>
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row>
+    <ion-col col-3>
+      تطابق فرآیند تحویل
+
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Tedad_Tahvil" name=Tedad_Tahvil>
+
+      </ion-input>
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Baresi_Tahvil" name=Baresi_Tahvil>
+
+      </ion-input>
+
+    </ion-col>
+    <ion-col col-3>
+
+      <ion-input type="number" value="{{(data.Tedad_Tahvil/data.Baresi_Tahvil*100)}}" name=Baresi_Tahvilm>
+
+      </ion-input>
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row>
+    <ion-col col-3>
+      تطابق فرآیند بهره برداری
+
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Tedad_Bahrebardari" name=Tedad_Bahrebardari>
+
+      </ion-input>
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Baresi_Bahrebardari" name=Baresi_Bahrebardari>
+
+      </ion-input>
+
+    </ion-col>
+    <ion-col col-3>
+
+      <ion-input type="number" value="{{(data.Tedad_Bahrebardari/data.Baresi_Bahrebardari*100)}}"
+        name=Baresi_Bahrebardarim>
+
+      </ion-input>
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row>
+    <ion-col col-3>
+      مطابق فرآیند مستندسازی
+
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Tedad_Mostanadsazi" name=Tedad_Mostanadsazi>
+
+      </ion-input>
+    </ion-col>
+    <ion-col col-3>
+      <ion-input type="number" [(ngModel)]="data.Baresi_Mostanadsazi" name=Baresi_Mostanadsazi>
+
+      </ion-input>
+
+
+    </ion-col>
+    <ion-col col-3>
+
+      <ion-input type="number" value="{{(data.Tedad_Mostanadsazi/data.Baresi_Mostanadsazi*100)}}"
+        name=Baresi_Mostanadsazin>
+
+      </ion-input>
+    </ion-col>
+  </ion-row>
 
   میانگین درصد تحقق
 
@@ -108,5 +263,5 @@
   <ion-input type="text" [(ngModel)]="spt11">
   </ion-input>
 
-  <ion-button (click)="save()">save</ion-button>
+  <ion-button (click)="save()">ذخیره</ion-button>
 </ion-content>

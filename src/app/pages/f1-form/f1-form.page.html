@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>f1-form</ion-title>
+    <ion-title>کل فرم ها</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,17 +8,17 @@
 
   <div>
     <button (click)="add()">
-      Add
+      فرم جدید
     </button>
   </div>
   
   <ul class="products">
-    <li *ngFor="let p of products; let i=index;">
-      <a routerLink="/product-details/{{p._id}}">
-        <span class="badge">{{i+1}}</span> {{p.Title}}
+    <li *ngFor="let p of forms; let i=index;">
+      <a routerLink="/form-details/{{p.Id}}">
+        <span class="badge">{{i+1}}</span> عنوان {{p.Title}} -کاربر:  {{p.Author.Title}} -ویرایش شده توسط:  {{p.Editor.Title}} 
       </a>
-      <button class="delete" title="delete product"
-        (click)="delete(p._id)">x</button>
+      <button class="delete" title="delete"
+        (click)="delete(p.Id)">x</button>
     </li>
   </ul>
 </ion-content>

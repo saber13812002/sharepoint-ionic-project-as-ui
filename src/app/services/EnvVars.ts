@@ -18,7 +18,10 @@ export class EnvVars {
 
     abs(relative) {
         if (environment.listIds[relative]) {
-            return environment.listIds.subsite + `/_api/Lists(guid'${environment.listIds[relative]}')/Items`;
+            let query = '';
+            if (relative == 'form')
+                query = '?$select=Title,Editor/Title,Author/Title&$expand=Editor/Id,Author/Id';
+            return environment.listIds.subsite + `/_api/Lists(guid'${environment.listIds[relative]}')/Items` + query;
         } else {
             return environment.listIds.subsite;
         }
